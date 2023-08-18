@@ -358,6 +358,11 @@ MonoBehaviour:
     FRWheel: {fileID: 5682159156486741370}
     RLWheel: {fileID: 3759788839191700425}
     RRWheel: {fileID: 4997071631303643151}
+  wheelParticles:
+    FLWheel: {fileID: 0}
+    FRWheel: {fileID: 0}
+    RLWheel: {fileID: 0}
+    RRWheel: {fileID: 0}
   throttleInput: 0
   brakeInput: 0
   steeringInput: 0
@@ -385,8 +390,11 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  smokePrefab: {fileID: 8317744607865819614, guid: 4533145c4308fc240b03b0e092c8f802,
+    type: 3}
   motorPower: 500
   brakePower: 50000
+  slipAllowance: 0.3
 --- !u!1 &6572380308550200838
 GameObject:
   m_ObjectHideFlags: 0
