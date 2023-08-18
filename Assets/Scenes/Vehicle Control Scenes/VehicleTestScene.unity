@@ -168,6 +168,18 @@ WheelCollider:
   m_LayerOverridePriority: 0
   m_Enabled: 1
   m_ProvidesContacts: 0
+--- !u!1 &382528189 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4997071631303643151, guid: 652f2d76763ce41469ce5356289f9e1b,
+    type: 3}
+  m_PrefabInstance: {fileID: 389649532667201109}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &507434485 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5682159156486741370, guid: 652f2d76763ce41469ce5356289f9e1b,
+    type: 3}
+  m_PrefabInstance: {fileID: 389649532667201109}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &796388217
 GameObject:
   m_ObjectHideFlags: 0
@@ -392,6 +404,12 @@ MonoBehaviour:
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
   m_SoftShadowQuality: 0
+--- !u!1 &1013320717 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8871465358832791114, guid: 652f2d76763ce41469ce5356289f9e1b,
+    type: 3}
+  m_PrefabInstance: {fileID: 389649532667201109}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1062002169 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 616258590806111461, guid: 652f2d76763ce41469ce5356289f9e1b,
@@ -437,6 +455,12 @@ WheelCollider:
   m_LayerOverridePriority: 0
   m_Enabled: 1
   m_ProvidesContacts: 0
+--- !u!1 &1277140612 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3759788839191700425, guid: 652f2d76763ce41469ce5356289f9e1b,
+    type: 3}
+  m_PrefabInstance: {fileID: 389649532667201109}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1674020734 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6572380308550200838, guid: 652f2d76763ce41469ce5356289f9e1b,
@@ -482,6 +506,34 @@ WheelCollider:
   m_LayerOverridePriority: 0
   m_Enabled: 1
   m_ProvidesContacts: 0
+--- !u!1 &1759506866 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6072831729102018243, guid: 652f2d76763ce41469ce5356289f9e1b,
+    type: 3}
+  m_PrefabInstance: {fileID: 389649532667201109}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1759506870
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1759506866}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6314ccc7eeceae84081a8477beda321a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wheelColliders:
+    FLWheel: {fileID: 1674020736}
+    FRWheel: {fileID: 1062002171}
+    RLWheel: {fileID: 1930960384}
+    RRWheel: {fileID: 94457616}
+  wheelMeshs:
+    FLWheel: {fileID: 1013320717}
+    FRWheel: {fileID: 507434485}
+    RLWheel: {fileID: 1277140612}
+    RRWheel: {fileID: 382528189}
 --- !u!1 &1927769533
 GameObject:
   m_ObjectHideFlags: 0
@@ -635,7 +687,7 @@ PrefabInstance:
     - target: {fileID: 1078083244706731354, guid: 652f2d76763ce41469ce5356289f9e1b,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.58
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1078083244706731354, guid: 652f2d76763ce41469ce5356289f9e1b,
         type: 3}
@@ -691,6 +743,10 @@ PrefabInstance:
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6072831729102018243, guid: 652f2d76763ce41469ce5356289f9e1b,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1759506870}
     - targetCorrespondingSourceObject: {fileID: 6572380308550200838, guid: 652f2d76763ce41469ce5356289f9e1b,
         type: 3}
       insertIndex: -1
