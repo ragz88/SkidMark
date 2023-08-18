@@ -101,12 +101,26 @@ Shader "TNTC/RectTexturePainter"{
                     // equation for an ellipse:  (x/a)^2 + (y/b)^2 = 1
                     // if we plug a given x and y in, and the value is smaller than 1, the point is within the ellipse.
                     // if greater, it is outside.
+                    // a = width     b = height
 
                     float pointX = (position.x - center.x);
                     float pointY = (position.z - center.z);
 
-                    float f = ((pointX * pointX) / 6) + ((pointY * pointY) / 2);
+                    float width = 6;
+                    float height = 2;
+                    float rotation = 12;
+
+                    // No rotation
+                    //float f = ((pointX * pointX) / width) + ((pointY * pointY) / height);
+
+                    // with rotation
+                    // These formulas are used to identify two new x and y positions, which have been rotated about the origin.
+                    float rotatedX = pointX * cos(rotation) - pointY * sin(rotation);
+                    float rotatedY = pointY * cos(rotation) + pointX * sin(rotation);
+
+                    float f = ((rotatedX * rotatedX) / width) + ((rotatedY * rotatedY) / height);
                     
+
                     if (f <= 1)
                     {
                         return 1;
