@@ -136,6 +136,8 @@ public class CarController : MonoBehaviour
     void ApplySteering()
     {
         float steeringAngle = steeringInput*steeringCurve.Evaluate(speed);
+        steeringAngle += Vector3.SignedAngle(transform.forward, rb.velocity + transform.forward, Vector3.up);
+        steeringAngle = Mathf.Clamp(steeringAngle, -90f, 90f);
         wheelColliders.FRWheel.steerAngle = steeringAngle;
         wheelColliders.FLWheel.steerAngle = steeringAngle;
     }
