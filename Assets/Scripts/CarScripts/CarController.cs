@@ -8,10 +8,14 @@ public class CarController : MonoBehaviour
     public WheelColliders wheelColliders;
     public WheelMeshs wheelMeshs;
     public float throttleInput;
+    public float brakeInput;
     public float steeringInput;
     public AnimationCurve steeringCurve;
 
     public float motorPower = 500;
+    public float brakePower = 50000;
+
+    float slipAngle;
     float speed;
 
     void Start()
@@ -24,14 +28,29 @@ public class CarController : MonoBehaviour
         speed = rb.velocity.magnitude;
         CheckInput();
         ApplyMotorTorque();
-        ApplyWheelPositions();
         ApplySteering();
+        ApplyBrake();
+        ApplyWheelPositions();
     }
 
     void CheckInput()
     {
         throttleInput = Input.GetAxis("Vertical");
         steeringInput = Input.GetAxis("Horizontal");
+        slipAngle = Vector3.Angle(transform.forward, rb.velocity - transform.forward);
+        if (slipAngle < 120f)
+        {
+            if (throttleInput < 0)
+            {
+                brakeInput = Mathf.Abs(throttleInput);
+                throttleInput = 0;
+            }
+
+        }
+        else
+        {
+            brakeInput = 0;
+        }
     }
 
     void ApplyMotorTorque()
@@ -47,6 +66,15 @@ public class CarController : MonoBehaviour
         UpdateWheelPosition(wheelColliders.FRWheel, wheelMeshs.FRWheel);
         UpdateWheelPosition(wheelColliders.RLWheel, wheelMeshs.RLWheel);
         UpdateWheelPosition(wheelColliders.RRWheel, wheelMeshs.RRWheel);
+    }
+
+    void ApplyBrake()
+    {
+        wheelColliders.FLWheel.brakeTorque = brakePower * brakeInput * 0.7f;  
+        wheelColliders.FRWheel.brakeTorque = brakePower * brakeInput * 0.7f;
+
+        wheelColliders.RLWheel.brakeTorque = brakePower * brakeInput * 0.3f;
+        wheelColliders.RRWheel.brakeTorque = brakePower * brakeInput * 0.3f;
     }
 
     void ApplySteering()
