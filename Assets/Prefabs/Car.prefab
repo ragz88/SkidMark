@@ -58,10 +58,10 @@ WheelCollider:
     m_Stiffness: 2
   m_SidewaysFriction:
     m_ExtremumSlip: 0.2
-    m_ExtremumValue: 1
-    m_AsymptoteSlip: 0.5
-    m_AsymptoteValue: 0.75
-    m_Stiffness: 2
+    m_ExtremumValue: 0.5
+    m_AsymptoteSlip: 0.3
+    m_AsymptoteValue: 0.4
+    m_Stiffness: 1
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -129,10 +129,10 @@ WheelCollider:
     m_Stiffness: 2
   m_SidewaysFriction:
     m_ExtremumSlip: 0.2
-    m_ExtremumValue: 1
-    m_AsymptoteSlip: 0.5
-    m_AsymptoteValue: 0.75
-    m_Stiffness: 2
+    m_ExtremumValue: 0.5
+    m_AsymptoteSlip: 0.3
+    m_AsymptoteValue: 0.4
+    m_Stiffness: 1
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -232,10 +232,10 @@ WheelCollider:
     m_Stiffness: 2
   m_SidewaysFriction:
     m_ExtremumSlip: 0.2
-    m_ExtremumValue: 1
-    m_AsymptoteSlip: 0.5
-    m_AsymptoteValue: 0.75
-    m_Stiffness: 2
+    m_ExtremumValue: 0.5
+    m_AsymptoteSlip: 0.3
+    m_AsymptoteValue: 0.4
+    m_Stiffness: 1
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -256,7 +256,7 @@ GameObject:
   - component: {fileID: 1078083244706731354}
   - component: {fileID: 8036491510131833224}
   - component: {fileID: 3773685850663308918}
-  - component: {fileID: 7926503322943250092}
+  - component: {fileID: 8072607561990616386}
   m_Layer: 0
   m_Name: Car
   m_TagString: Untagged
@@ -336,7 +336,7 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 2.15, y: 0.8783009, z: 4.108375}
   m_Center: {x: 0, y: 0.9787344, z: -0.07193828}
---- !u!114 &7926503322943250092
+--- !u!114 &8072607561990616386
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -345,7 +345,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 6072831729102018243}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6314ccc7eeceae84081a8477beda321a, type: 3}
+  m_Script: {fileID: 11500000, guid: 7aa5e4c090aad5143908620cca484afd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   wheelColliders:
@@ -354,47 +354,46 @@ MonoBehaviour:
     RLWheel: {fileID: 473476092891695220}
     RRWheel: {fileID: 1085212026070794267}
   wheelMeshs:
-    FLWheel: {fileID: 8871465358832791114}
-    FRWheel: {fileID: 5682159156486741370}
-    RLWheel: {fileID: 3759788839191700425}
-    RRWheel: {fileID: 4997071631303643151}
+    FLWheel: {fileID: 8094681643536168176}
+    FRWheel: {fileID: 5012723028330563520}
+    RLWheel: {fileID: 4568519930467563891}
+    RRWheel: {fileID: 5625834315821173429}
   wheelParticles:
     FLWheel: {fileID: 0}
     FRWheel: {fileID: 0}
     RLWheel: {fileID: 0}
     RRWheel: {fileID: 0}
-  throttleInput: 0
-  brakeInput: 0
-  steeringInput: 0
+  smokePrefab: {fileID: 8317744607865819614, guid: 4533145c4308fc240b03b0e092c8f802,
+    type: 3}
+  motorForce: 1000
+  maxSteerAngle: 45
+  slipAllowance: 0.3
+  brakePower: 3000
+  rearBias: 0.6
   steeringCurve:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
-      time: -0.03011626
-      value: 65.34743
-      inSlope: -0.93853647
-      outSlope: -0.93853647
+      time: 0
+      value: 59.957706
+      inSlope: -1.0375872
+      outSlope: -1.0375872
       tangentMode: 0
       weightedMode: 0
       inWeight: 0
-      outWeight: 0.16105999
+      outWeight: 0.38805804
     - serializedVersion: 3
-      time: 50.393944
-      value: 20.31141
-      inSlope: 0.14538942
-      outSlope: 0.14538942
+      time: 51.151955
+      value: 19.4935
+      inSlope: 0.10891624
+      outSlope: 0.10891624
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0.17591147
+      inWeight: 0.24411303
       outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  smokePrefab: {fileID: 8317744607865819614, guid: 4533145c4308fc240b03b0e092c8f802,
-    type: 3}
-  motorPower: 500
-  brakePower: 50000
-  slipAllowance: 0.3
 --- !u!1 &6572380308550200838
 GameObject:
   m_ObjectHideFlags: 0
@@ -453,10 +452,10 @@ WheelCollider:
     m_Stiffness: 2
   m_SidewaysFriction:
     m_ExtremumSlip: 0.2
-    m_ExtremumValue: 1
-    m_AsymptoteSlip: 0.5
-    m_AsymptoteValue: 0.75
-    m_Stiffness: 2
+    m_ExtremumValue: 0.5
+    m_AsymptoteSlip: 0.3
+    m_AsymptoteValue: 0.4
+    m_Stiffness: 1
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -624,12 +623,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ec2e9e299791f844093bccd8446526aa, type: 3}
---- !u!1 &3759788839191700425 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: ec2e9e299791f844093bccd8446526aa,
-    type: 3}
-  m_PrefabInstance: {fileID: 4101686167910669976}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &4568519930467563891 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: ec2e9e299791f844093bccd8446526aa,
@@ -785,12 +778,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 4763256395093844011}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &5682159156486741370 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: ec2e9e299791f844093bccd8446526aa,
-    type: 3}
-  m_PrefabInstance: {fileID: 4763256395093844011}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &5303063317970169182
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -934,12 +921,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ec2e9e299791f844093bccd8446526aa, type: 3}
---- !u!1 &4997071631303643151 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: ec2e9e299791f844093bccd8446526aa,
-    type: 3}
-  m_PrefabInstance: {fileID: 5303063317970169182}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &5625834315821173429 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: ec2e9e299791f844093bccd8446526aa,
@@ -1032,12 +1013,6 @@ PrefabInstance:
 --- !u!4 &8094681643536168176 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: ec2e9e299791f844093bccd8446526aa,
-    type: 3}
-  m_PrefabInstance: {fileID: 8636971064894968603}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &8871465358832791114 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: ec2e9e299791f844093bccd8446526aa,
     type: 3}
   m_PrefabInstance: {fileID: 8636971064894968603}
   m_PrefabAsset: {fileID: 0}
