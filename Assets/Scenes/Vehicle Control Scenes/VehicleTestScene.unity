@@ -462,6 +462,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 473476092891695220, guid: 652f2d76763ce41469ce5356289f9e1b,
+        type: 3}
+      propertyPath: m_SidewaysFriction.m_Stiffness
+      value: 1.5
+      objectReference: {fileID: 0}
     - target: {fileID: 1078083244706731354, guid: 652f2d76763ce41469ce5356289f9e1b,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -512,10 +517,75 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1085212026070794267, guid: 652f2d76763ce41469ce5356289f9e1b,
+        type: 3}
+      propertyPath: m_ForwardFriction.m_Stiffness
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1085212026070794267, guid: 652f2d76763ce41469ce5356289f9e1b,
+        type: 3}
+      propertyPath: m_SidewaysFriction.m_Stiffness
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1799454095558803167, guid: 652f2d76763ce41469ce5356289f9e1b,
+        type: 3}
+      propertyPath: m_SidewaysFriction.m_Stiffness
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2399039667127859814, guid: 652f2d76763ce41469ce5356289f9e1b,
+        type: 3}
+      propertyPath: m_SidewaysFriction.m_Stiffness
+      value: 1.5
+      objectReference: {fileID: 0}
     - target: {fileID: 6072831729102018243, guid: 652f2d76763ce41469ce5356289f9e1b,
         type: 3}
       propertyPath: m_Name
       value: Car
+      objectReference: {fileID: 0}
+    - target: {fileID: 8036491510131833224, guid: 652f2d76763ce41469ce5356289f9e1b,
+        type: 3}
+      propertyPath: m_Mass
+      value: 1400
+      objectReference: {fileID: 0}
+    - target: {fileID: 8072607561990616386, guid: 652f2d76763ce41469ce5356289f9e1b,
+        type: 3}
+      propertyPath: rearBias
+      value: 0.55
+      objectReference: {fileID: 0}
+    - target: {fileID: 8072607561990616386, guid: 652f2d76763ce41469ce5356289f9e1b,
+        type: 3}
+      propertyPath: brakePower
+      value: 2500
+      objectReference: {fileID: 0}
+    - target: {fileID: 8072607561990616386, guid: 652f2d76763ce41469ce5356289f9e1b,
+        type: 3}
+      propertyPath: motorForce
+      value: 2000
+      objectReference: {fileID: 0}
+    - target: {fileID: 8072607561990616386, guid: 652f2d76763ce41469ce5356289f9e1b,
+        type: 3}
+      propertyPath: autoCountersteer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8072607561990616386, guid: 652f2d76763ce41469ce5356289f9e1b,
+        type: 3}
+      propertyPath: steeringCurve.m_Curve.Array.data[0].time
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8072607561990616386, guid: 652f2d76763ce41469ce5356289f9e1b,
+        type: 3}
+      propertyPath: steeringCurve.m_Curve.Array.data[1].time
+      value: 100.49646
+      objectReference: {fileID: 0}
+    - target: {fileID: 8072607561990616386, guid: 652f2d76763ce41469ce5356289f9e1b,
+        type: 3}
+      propertyPath: steeringCurve.m_Curve.Array.data[0].value
+      value: 65.17409
+      objectReference: {fileID: 0}
+    - target: {fileID: 8072607561990616386, guid: 652f2d76763ce41469ce5356289f9e1b,
+        type: 3}
+      propertyPath: steeringCurve.m_Curve.Array.data[1].value
+      value: 30.199265
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

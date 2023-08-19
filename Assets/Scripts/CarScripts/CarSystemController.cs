@@ -7,11 +7,10 @@ using UnityEngine.EventSystems;
 public class CarSystemController : MonoBehaviour
 {
     private Rigidbody rb;
-    private float steeringInput, throttleInput;
+    public float steeringInput, throttleInput, brakeInput;
     private float currentSteerAngle;
-    private float brakeInput;
     private float frontBias;
-    private float speed;
+    public float speed;
     private float slipAngle;
     //Wheels
     [SerializeField] private CarWheelColliders wheelColliders;
@@ -22,6 +21,7 @@ public class CarSystemController : MonoBehaviour
     [SerializeField] private GameObject smokePrefab;
 
     // Settings
+    [SerializeField] private bool autoCountersteer = true;
     [SerializeField] private float motorForce = 1000f, slipAllowance = 0.3f, brakePower = 3000;
     [SerializeField] [Range(0, 1)] private float rearBias = 0.7f;
     [SerializeField] private AnimationCurve steeringCurve;
@@ -55,7 +55,7 @@ public class CarSystemController : MonoBehaviour
     private void GetInput()
     {
         steeringInput = Input.GetAxis("Horizontal");
-        throttleInput = Input.GetAxis("Vertical");
+        throttleInput = Input.GetAxis("vertical");
 
         slipAngle = Vector3.Angle(transform.forward, rb.velocity - transform.forward);
 
@@ -86,11 +86,14 @@ public class CarSystemController : MonoBehaviour
     private void HandleSteering()
     {
         currentSteerAngle = steeringInput * steeringCurve.Evaluate(speed);
-        if (slipAngle < 120f)
+        if(autoCountersteer)
         {
-            currentSteerAngle += Vector3.SignedAngle(transform.forward, rb.velocity + transform.forward, Vector3.up);
+            if (slipAngle < 120f)
+            {
+                currentSteerAngle += Vector3.SignedAngle(transform.forward, rb.velocity + transform.forward, Vector3.up);
+            }
         }
-        currentSteerAngle = Mathf.Clamp(currentSteerAngle, -90f, 90f);
+        currentSteerAngle = Mathf.Clamp(currentSteerAngle, -75f, 75f);
         wheelColliders.FRWheel.steerAngle = currentSteerAngle;
         wheelColliders.FLWheel.steerAngle = currentSteerAngle;
     }
