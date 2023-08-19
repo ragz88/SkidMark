@@ -8,6 +8,8 @@ public class PaintManager : Singleton<PaintManager>{
 
     int prepareUVID = Shader.PropertyToID("_PrepareUV");
     int positionID = Shader.PropertyToID("_PainterPosition");
+    int widthID = Shader.PropertyToID("_Width");
+    int heightID = Shader.PropertyToID("_Height");
     int rotationID = Shader.PropertyToID("_Rotation");
     int hardnessID = Shader.PropertyToID("_Hardness");
     int strengthID = Shader.PropertyToID("_Strength");
@@ -52,7 +54,7 @@ public class PaintManager : Singleton<PaintManager>{
     }
 
 
-    public void paint(Paintable paintable, Vector3 pos, float radius = 1f, float hardness = .5f, float strength = .5f, float rotation = 0f, Color? color = null){
+    public void paint(Paintable paintable, Vector3 pos, float radius = 1f, float hardness = .5f, float strength = .5f, float width = 4f, float height = 2f, float rotation = 0f, Color? color = null){
         RenderTexture mask = paintable.getMask();
         RenderTexture uvIslands = paintable.getUVIslands();
         RenderTexture extend = paintable.getExtend();
@@ -62,6 +64,8 @@ public class PaintManager : Singleton<PaintManager>{
         paintMaterial.SetFloat(prepareUVID, 0);
         paintMaterial.SetVector(positionID, pos);
         paintMaterial.SetFloat(rotationID, rotation);
+        paintMaterial.SetFloat(widthID, width);
+        paintMaterial.SetFloat(heightID, height);
         paintMaterial.SetFloat(hardnessID, hardness);
         paintMaterial.SetFloat(strengthID, strength);
         paintMaterial.SetFloat(radiusID, radius);

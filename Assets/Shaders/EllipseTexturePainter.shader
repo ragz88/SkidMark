@@ -1,7 +1,7 @@
-Shader "TNTC/RectTexturePainter"{
+Shader "TNTC/EllipseTexturePainter"{
 
     Properties{
-        _PainterColor("Painter Color", Color) = (0, 0, 0, 0) 
+        _PainterColor("Painter Color", Color) = (0, 0, 0, 0)
     }
 
         SubShader{
@@ -41,7 +41,7 @@ Shader "TNTC/RectTexturePainter"{
 
 
                 float mask(float3 position, float3 center, float radius, float hardness, float width, float height, float rotation) {
-                    
+
                     // Keeps track of distance between position of brush, and position of each fragment.
                     // Remember, because not every frag lies on a vert, some will be interpolated to get their colour.
                     // Only frags that fall within our brush circle will be affected.
@@ -53,10 +53,10 @@ Shader "TNTC/RectTexturePainter"{
                     //return 1 - smoothstep(radius * hardness, radius, m);
                     // ----------------------------------------------------------
 
-                    // Rect Code Below
+                    // Square Code Below
                     // -------------------------------------------------------------
-                    
-                    if (abs(position.x - center.x) < width && abs(position.z - center.z) < height)
+                    /*
+                    if (abs(position.x - center.x) < radius && abs(position.z - center.z) < radius)
                     {
                         return 1;
                     }
@@ -64,13 +64,13 @@ Shader "TNTC/RectTexturePainter"{
                     {
                         return 0;
                     }
-                    
+                    */
                     // -------------------------------------------------------------
 
 
                     // Ellipse Code Below
                     // -------------------------------------------------------------
-                    /*
+
                     // equation for an ellipse:  (x/a)^2 + (y/b)^2 = 1
                     // if we plug a given x and y in, and the value is smaller than 1, the point is within the ellipse.
                     // if greater, it is outside.
@@ -78,9 +78,6 @@ Shader "TNTC/RectTexturePainter"{
 
                     float pointX = (position.x - center.x);
                     float pointY = (position.z - center.z);
-
-                    float width = 6;
-                    float height = 2;
 
                     // No rotation
                     //float f = ((pointX * pointX) / width) + ((pointY * pointY) / height);
@@ -91,7 +88,7 @@ Shader "TNTC/RectTexturePainter"{
                     float rotatedY = pointY * cos(rotation) + pointX * sin(rotation);
 
                     float f = ((rotatedX * rotatedX) / width) + ((rotatedY * rotatedY) / height);
-                    
+
 
                     if (f <= 1)
                     {
@@ -103,7 +100,6 @@ Shader "TNTC/RectTexturePainter"{
                     }
 
                     // -------------------------------------------------------------
-                    */
                 }
 
                 // Converts world space to UV space

@@ -500,7 +500,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2e65584b2e960e418602d083273fa00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  texturePaint: {fileID: 4800000, guid: 6b8273ec3e14d0748bacf9bca86bd227, type: 3}
+  texturePaint: {fileID: 4800000, guid: a3f3c4ec8eb3ef74fa4673e97efa9ab7, type: 3}
   extendIslands: {fileID: 4800000, guid: 142bf0bbbb010394c80ec62206463a94, type: 3}
 --- !u!1 &1431696646
 GameObject:
@@ -772,8 +772,8 @@ MonoBehaviour:
   paintColor: {r: 1, g: 0.5458691, b: 0, a: 1}
   strength: 1
   hardness: 1
-  width: 5
-  height: 3
+  width: 2.8
+  height: 1.4
 --- !u!1 &1770480419
 GameObject:
   m_ObjectHideFlags: 0

@@ -40,8 +40,8 @@ public class DriftPainter : MonoBehaviour
                 if (p != null)
                 {
                     rotation = transform.rotation.eulerAngles.y*Mathf.Deg2Rad;
-                    Debug.Log(rotation);
-                    PaintManager.instance.paint(p, hit.point, radius, hardness, strength, rotation, paintColor);
+                    //Debug.Log(rotation);
+                    PaintManager.instance.paint(p, hit.point, radius, hardness, strength, width, height, rotation, paintColor);
                 }
             }
         }
