@@ -2,10 +2,6 @@ Shader "TNTC/RectTexturePainter"{
 
     Properties{
         _PainterColor("Painter Color", Color) = (0, 0, 0, 0) 
-        //_TopLeft("Top Left Corner", Vector) = (0, 0, 0, 0) 
-        //_TopRight("Top Right Corner", Vector) = (0, 0, 0, 0)
-        //_BottomLeft("Bottom Left Corner", Vector) = (0, 0, 0, 0)
-        //_BottomRight("Bottom Right Corner", Vector) = (0, 0, 0, 0)
     }
 
         SubShader{
@@ -25,15 +21,10 @@ Shader "TNTC/RectTexturePainter"{
                 float _Radius;
                 float _Hardness;
                 float _Strength;
+                float _Rotation;
                 float4 _PainterColor;
                 float _PrepareUV;
 
-               // float2 _TopLeft;
-               // float2 _TopRight;
-               // float2 _BottomLeft;
-               // float2 _BottomRight;
-
-                float4 _Debug;
 
                 struct appdata {
                     float4 vertex : POSITION;
@@ -46,28 +37,8 @@ Shader "TNTC/RectTexturePainter"{
                     float4 worldPos : TEXCOORD1;
                 };
 
-                //float mask(float3 position, float3 center, float radius, float hardness) {
-                //    float m = distance(center, position);
-                //    return 1 - smoothstep(radius * hardness, radius, m);
-                //}
 
-                /*float mask(float3 position)
-                {
-                    float4 pos = UnityObjectToClipPos(position);
-
-                    // CUrrently assumes this is just a rectangle
-
-                    if (pos.x > _TopLeft.x && pos.x < _TopRight.x && pos.y < _TopLeft.y && pos.y > _BottomRight.y)
-                    {
-                        return (1, 1, 1, 1);
-                    }
-                    else
-                    {
-                        return (0, 0, 0, 1);
-                    }
-                }*/
-
-                float mask(float3 position, float3 center, float radius, float hardness) {
+                float mask(float3 position, float3 center, float radius, float hardness, float rotation) {
                     
                     // Keeps track of distance between position of brush, and position of each fragment.
                     // Remember, because not every frag lies on a vert, some will be interpolated to get their colour.
@@ -108,7 +79,6 @@ Shader "TNTC/RectTexturePainter"{
 
                     float width = 6;
                     float height = 2;
-                    float rotation = 12;
 
                     // No rotation
                     //float f = ((pointX * pointX) / width) + ((pointY * pointY) / height);
@@ -150,7 +120,7 @@ Shader "TNTC/RectTexturePainter"{
                     }
 
                     float4 col = tex2D(_MainTex, i.uv);
-                    float f = mask(i.worldPos, _PainterPosition, _Radius, _Hardness);
+                    float f = mask(i.worldPos, _PainterPosition, _Radius, _Hardness, _Rotation);
                     float edge = f * _Strength;
                     return lerp(col, _PainterColor, edge);
                 }

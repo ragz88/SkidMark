@@ -20,6 +20,15 @@ public class TestPlayerMovement : MonoBehaviour
 
         movementVect = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
 
-        playerBody.velocity = new Vector3(movementVect.x * 5, playerBody.velocity.y, movementVect.y * 5);
+        playerBody.velocity = new Vector3(movementVect.x * 7, playerBody.velocity.y, movementVect.y * 7);
+
+        if (Input.GetKey(KeyCode.J))
+        {
+            transform.Rotate(0,1,0);
+        }
+        if (Input.GetKey(KeyCode.K))
+        {
+            transform.Rotate(0, -1, 0);
+        }
     }
 }
