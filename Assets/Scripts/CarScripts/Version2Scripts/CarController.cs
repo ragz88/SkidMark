@@ -8,7 +8,8 @@ namespace UnityStandardAssets.Vehicles.Car
     {
         FrontWheelDrive,
         RearWheelDrive,
-        FourWheelDrive
+        FourWheelDrive,
+        CustomDriveTrain
     }
 
     internal enum SpeedType
@@ -20,6 +21,7 @@ namespace UnityStandardAssets.Vehicles.Car
     public class CarController : MonoBehaviour
     {
         [SerializeField] private CarDriveType m_CarDriveType = CarDriveType.FourWheelDrive;
+        [SerializeField][Range(0, 1)] private float rearBias = 0.7f;
         [SerializeField] private WheelCollider[] m_WheelColliders = new WheelCollider[4];
         [SerializeField] private GameObject[] m_WheelMeshes = new GameObject[4];
         [SerializeField] private WheelEffects[] m_WheelEffects = new WheelEffects[4];
@@ -47,6 +49,7 @@ namespace UnityStandardAssets.Vehicles.Car
         private float m_CurrentTorque;
         private Rigidbody m_Rigidbody;
         private const float k_ReversingThreshold = 0.01f;
+        private float frontBias;
 
         public bool Skidding { get; private set; }
         public float BrakeInput { get; private set; }
@@ -132,6 +135,8 @@ namespace UnityStandardAssets.Vehicles.Car
 
         public void Move(float steering, float accel, float footbrake, float handbrake)
         {
+            frontBias = 1f - rearBias;
+
             for (int i = 0; i < 4; i++)
             {
                 Quaternion quat;
@@ -201,6 +206,8 @@ namespace UnityStandardAssets.Vehicles.Car
         {
 
             float thrustTorque;
+            float frontThrustTorque;
+            float rearThrustTorque;
             switch (m_CarDriveType)
             {
                 case CarDriveType.FourWheelDrive:
@@ -219,6 +226,14 @@ namespace UnityStandardAssets.Vehicles.Car
                 case CarDriveType.RearWheelDrive:
                     thrustTorque = accel * (m_CurrentTorque / 2f);
                     m_WheelColliders[2].motorTorque = m_WheelColliders[3].motorTorque = thrustTorque;
+                    break;
+
+                case CarDriveType.CustomDriveTrain:
+                    frontThrustTorque = accel * frontBias * (m_CurrentTorque / 2f);
+                    m_WheelColliders[0].motorTorque = m_WheelColliders[1].motorTorque = frontThrustTorque;
+
+                    rearThrustTorque = accel * rearBias * (m_CurrentTorque / 2f);
+                    m_WheelColliders[2].motorTorque = m_WheelColliders[3].motorTorque = rearThrustTorque;
                     break;
 
             }
@@ -334,6 +349,15 @@ namespace UnityStandardAssets.Vehicles.Car
 
                     m_WheelColliders[1].GetGroundHit(out wheelHit);
                     AdjustTorque(wheelHit.forwardSlip);
+                    break;
+
+                case CarDriveType.CustomDriveTrain:
+                    for (int i = 0; i < 4; i++)
+                    {
+                        m_WheelColliders[i].GetGroundHit(out wheelHit);
+
+                        AdjustTorque(wheelHit.forwardSlip);
+                    }
                     break;
             }
         }

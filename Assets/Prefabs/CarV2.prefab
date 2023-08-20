@@ -828,6 +828,7 @@ GameObject:
   - component: {fileID: 4169568527476528468}
   - component: {fileID: 7857894839200875558}
   - component: {fileID: 9204433416780469370}
+  - component: {fileID: 8512419978998290274}
   m_Layer: 0
   m_Name: CarV2
   m_TagString: Untagged
@@ -981,6 +982,20 @@ MonoBehaviour:
   maxRolloffDistance: 500
   dopplerLevel: 1
   useDoppler: 1
+--- !u!114 &8512419978998290274
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1933047407509921626}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a42176ca14499ad49b633e824f1b3767, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_WaitTime: 2
+  m_VelocityThreshold: 1
 --- !u!1 &2556001419452938875
 GameObject:
   m_ObjectHideFlags: 0
