@@ -86,13 +86,13 @@ namespace UnityStandardAssets.Vehicles.Car
             if (m_GearNum > 0 && f < downgearlimit)
             {
                 m_GearNum--;
-                GearSound.Play();
+                //GearSound.Play();
             }
 
             if (f > upgearlimit && (m_GearNum < (NoOfGears - 1)))
             {
                 m_GearNum++;
-                GearSound.Play();
+                //GearSound.Play();
             }
         }
 
