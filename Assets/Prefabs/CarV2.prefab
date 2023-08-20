@@ -917,6 +917,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_CarDriveType: 2
+  rearBias: 0.405
   m_WheelColliders:
   - {fileID: 6227468791650056006}
   - {fileID: 8061304749606876159}

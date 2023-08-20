@@ -229,10 +229,10 @@ namespace UnityStandardAssets.Vehicles.Car
                     break;
 
                 case CarDriveType.CustomDriveTrain:
-                    frontThrustTorque = accel * frontBias * (m_CurrentTorque / 2f);
+                    frontThrustTorque = accel * (frontBias * (m_CurrentTorque / 2f));
                     m_WheelColliders[0].motorTorque = m_WheelColliders[1].motorTorque = frontThrustTorque;
 
-                    rearThrustTorque = accel * rearBias * (m_CurrentTorque / 2f);
+                    rearThrustTorque = accel * (rearBias * (m_CurrentTorque / 2f));
                     m_WheelColliders[2].motorTorque = m_WheelColliders[3].motorTorque = rearThrustTorque;
                     break;
 
