@@ -22,6 +22,7 @@ namespace UnityStandardAssets.Vehicles.Car
     {
         [SerializeField] private CarDriveType m_CarDriveType = CarDriveType.FourWheelDrive;
         [SerializeField][Range(0, 1)] private float rearBias = 0.7f;
+        [SerializeField][Range(0, 1)] private float dynamicHandbrakeEffect = 0.6f;
         [SerializeField] private WheelCollider[] m_WheelColliders = new WheelCollider[4];
         [SerializeField] private GameObject[] m_WheelMeshes = new GameObject[4];
         [SerializeField] private WheelEffects[] m_WheelEffects = new WheelEffects[4];
@@ -166,9 +167,11 @@ namespace UnityStandardAssets.Vehicles.Car
             //Assuming that wheels 2 and 3 are the rear wheels.
             if (handbrake > 0f)
             {
+                float leftWheelHandbrakeStrength = 1 - (steering * dynamicHandbrakeEffect);
+                float rightWheelHandbrakeStrength = 1 + (steering * dynamicHandbrakeEffect);
                 var hbTorque = handbrake*m_MaxHandbrakeTorque;
-                m_WheelColliders[2].brakeTorque = hbTorque;
-                m_WheelColliders[3].brakeTorque = hbTorque;
+                m_WheelColliders[2].brakeTorque = hbTorque * leftWheelHandbrakeStrength;
+                m_WheelColliders[3].brakeTorque = hbTorque * rightWheelHandbrakeStrength;
             }
 
 
