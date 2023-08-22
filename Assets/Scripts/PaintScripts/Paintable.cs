@@ -5,6 +5,8 @@ public class Paintable : MonoBehaviour {
 
     public float extendsIslandOffset = 1;
 
+    public int PixelCount = 0;
+
     RenderTexture extendIslandsRenderTexture;
     RenderTexture uvIslandsRenderTexture;
     RenderTexture maskRenderTexture;

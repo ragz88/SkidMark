@@ -20,6 +20,8 @@ public class PaintManager : Singleton<PaintManager>{
     int uvOffsetID = Shader.PropertyToID("_OffsetUV");
     int uvIslandsID = Shader.PropertyToID("_UVIslands");
 
+    int countID = Shader.PropertyToID("_TeamOnePixelCount");
+
     Material paintMaterial;
     Material extendMaterial;
 
@@ -73,6 +75,7 @@ public class PaintManager : Singleton<PaintManager>{
         paintMaterial.SetColor(colorID, color ?? Color.red);
         extendMaterial.SetFloat(uvOffsetID, paintable.extendsIslandOffset);
         extendMaterial.SetTexture(uvIslandsID, uvIslands);
+
 
         command.SetRenderTarget(mask);
         command.DrawRenderer(rend, paintMaterial, 0);

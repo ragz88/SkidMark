@@ -26,6 +26,7 @@ Shader "TNTC/EllipseTexturePainter"{
                 float _Rotation;
                 float4 _PainterColor;
                 float _PrepareUV;
+                
 
 
                 struct appdata {
@@ -78,6 +79,8 @@ Shader "TNTC/EllipseTexturePainter"{
 
                     float pointX = (position.x - center.x);
                     float pointY = (position.z - center.z);
+                    float roundness = 2;
+                    // Working values: 2; 2.16; 2.56
 
                     // No rotation
                     //float f = ((pointX * pointX) / width) + ((pointY * pointY) / height);
@@ -87,8 +90,8 @@ Shader "TNTC/EllipseTexturePainter"{
                     float rotatedX = pointX * cos(rotation) - pointY * sin(rotation);
                     float rotatedY = pointY * cos(rotation) + pointX * sin(rotation);
 
-                    float f = ((rotatedX * rotatedX) / width) + ((rotatedY * rotatedY) / height);
-
+                    //float f = ((rotatedX * rotatedX) / width) + ((rotatedY * rotatedY) / height);
+                    float f = ( pow(rotatedX, roundness) / width) + ( pow(rotatedY, roundness) / height);
 
                     if (f <= 1)
                     {
@@ -101,6 +104,7 @@ Shader "TNTC/EllipseTexturePainter"{
 
                     // -------------------------------------------------------------
                 }
+
 
                 // Converts world space to UV space
                 v2f vert(appdata v) {
@@ -121,6 +125,7 @@ Shader "TNTC/EllipseTexturePainter"{
                     float4 col = tex2D(_MainTex, i.uv);
                     float f = mask(i.worldPos, _PainterPosition, _Radius, _Hardness, _Width, _Height, _Rotation);
                     float edge = f * _Strength;
+
                     return lerp(col, _PainterColor, edge);
                 }
                 ENDCG
