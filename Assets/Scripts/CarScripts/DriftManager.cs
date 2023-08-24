@@ -11,9 +11,10 @@ public class DriftManager : MonoBehaviour
     public TMP_Text currentScoreText;
     public TMP_Text multiplierText;
     public TMP_Text driftAngleText;
+    public bool isDrifting { get; set; }
 
     private float speed = 0f, driftAngle = 0f, driftMultiplier = 1f, currentScore, totalScore;
-    private bool isDrifting = false;
+    private bool driftState = false;
     public float minSpeed = 5f;
     public float minDriftAngle = 10f;
     public float maxDriftAngle = 120f;
@@ -33,6 +34,7 @@ public class DriftManager : MonoBehaviour
     {
         ManageDrift();
         ManageUI();
+        isDrifting = driftState;
     }
     void ManageDrift()
     {
@@ -44,19 +46,19 @@ public class DriftManager : MonoBehaviour
         }
         if (driftAngle >= minDriftAngle && speed > minSpeed)
         {
-            if (!isDrifting || stopDriftingCoroutine != null)
+            if (!driftState || stopDriftingCoroutine != null)
             {
                 StartDrift();
             }
         }
         else
         {
-            if (isDrifting && stopDriftingCoroutine == null)
+            if (driftState && stopDriftingCoroutine == null)
             {
                 StopDrift();
             }
         }
-        if (isDrifting)
+        if (driftState)
         {
             currentScore += Time.deltaTime * driftAngle * driftMultiplier;
             driftMultiplier += Time.deltaTime;
@@ -66,7 +68,7 @@ public class DriftManager : MonoBehaviour
 
     async void StartDrift()
     {
-        if (!isDrifting)
+        if (!driftState)
         {
             await Task.Delay(Mathf.RoundToInt(1000 * driftTimeDelay));
             driftMultiplier = 1;
@@ -77,7 +79,7 @@ public class DriftManager : MonoBehaviour
             stopDriftingCoroutine = null;
         }
         currentScoreText.color = normalDriftColour;
-        isDrifting = true;
+        driftState = true;
     }
     void StopDrift()
     {
@@ -90,7 +92,7 @@ public class DriftManager : MonoBehaviour
         currentScoreText.color = driftStoppingColour;
         yield return new WaitForSeconds(driftTimeDelay * 4f);
         totalScore += currentScore; 
-        isDrifting = false;
+        driftState = false;
         currentScoreText.color = driftEndedColour;
         yield return new WaitForSeconds(0.5f);
         currentScore = 0;
