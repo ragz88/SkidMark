@@ -4,14 +4,15 @@ using UnityEngine;
 using TMPro;
 using UnityStandardAssets.Vehicles.Car;
 
-public class NosManager : MonoBehaviour
+public class NosFXManager : MonoBehaviour
 {
     private CarController car;
     public TMP_Text nitrousMeter;
     public ParticleSystem[] nitrous;
     public AudioSource nosSound;
+    public bool applyNosFX { get; set; }
 
-    void Start()
+void Start()
     {
         car = GetComponent<CarController>();
     }
@@ -19,15 +20,14 @@ public class NosManager : MonoBehaviour
     public void UpdateNos()
     {
         nitrousMeter.text = car.nitrousGaugePercentage.ToString("###,##0") + "%";
-    }
-
-    public void DisplayNosFX(float nosInput)
-    {
-        if(nosInput > 0)
+        if (applyNosFX )
         {
+            if(!nosSound.isPlaying)
             nosSound.Play();
+
             foreach (ParticleSystem nosEffect in nitrous)
             {
+                if(!nosEffect.isPlaying)
                 nosEffect.Play();
             }
         }
@@ -41,5 +41,5 @@ public class NosManager : MonoBehaviour
         }
     }
 
-        
+
 }

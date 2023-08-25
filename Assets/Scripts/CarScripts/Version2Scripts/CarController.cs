@@ -56,7 +56,7 @@ namespace UnityStandardAssets.Vehicles.Car
         private const float k_ReversingThreshold = 0.01f;
         private float frontBias;
         private float currentNitros;
-        private NosManager nosManager;
+        private NosFXManager nosManager;
         public int nitrousGaugePercentage { get; set; }
 
         public bool Skidding { get; private set; }
@@ -80,7 +80,7 @@ namespace UnityStandardAssets.Vehicles.Car
             m_MaxHandbrakeTorque = float.MaxValue;
 
             m_Rigidbody = GetComponent<Rigidbody>();
-            nosManager = GetComponent<NosManager>();
+            nosManager = GetComponent<NosFXManager>();
             m_CurrentTorque = m_FullTorqueOverAllWheels - (m_TractionControl*m_FullTorqueOverAllWheels);
 
             m_WheelColliders[2].brakeTorque = 0f;
@@ -166,8 +166,12 @@ namespace UnityStandardAssets.Vehicles.Car
                 {
                     m_Rigidbody.AddForce(transform.forward * m_NitrousForce * Time.deltaTime * 100f);
                     currentNitros -= m_NitrousConsumtion * Time.deltaTime;
-                    nosManager.DisplayNosFX(nos);
+                    nosManager.applyNosFX = true;
                 }
+            }
+            else
+            {
+                nosManager.applyNosFX = false;
             }
 
             nitrousGaugePercentage = Mathf.RoundToInt((currentNitros / m_NitrousCapacity) * 100f);
