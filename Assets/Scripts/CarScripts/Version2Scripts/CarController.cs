@@ -173,6 +173,11 @@ namespace UnityStandardAssets.Vehicles.Car
                 m_WheelColliders[2].brakeTorque = hbTorque * leftWheelHandbrakeStrength;
                 m_WheelColliders[3].brakeTorque = hbTorque * rightWheelHandbrakeStrength;
             }
+            else
+            {
+                m_WheelColliders[2].brakeTorque = 0f;
+                m_WheelColliders[3].brakeTorque = 0f;
+            }
 
 
             CalculateRevs();
