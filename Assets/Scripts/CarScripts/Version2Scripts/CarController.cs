@@ -40,6 +40,10 @@ namespace UnityStandardAssets.Vehicles.Car
         [SerializeField] private float m_RevRangeBoundary = 1f;
         [SerializeField] private float m_SlipLimit;
         [SerializeField] private float m_BrakeTorque;
+        [SerializeField] private float m_NitrousForce = 5500f;
+        [SerializeField] private float m_NitrousCapacity = 1000f;
+        [SerializeField] private float m_NitrousConsumtion = 100f;
+        [SerializeField] private float m_startingNitrous = 100f;
 
         private Quaternion[] m_WheelMeshLocalRotations;
         private Vector3 m_Prevpos, m_Pos;
@@ -51,6 +55,9 @@ namespace UnityStandardAssets.Vehicles.Car
         private Rigidbody m_Rigidbody;
         private const float k_ReversingThreshold = 0.01f;
         private float frontBias;
+        private float currentNitros;
+        private NosManager nosManager;
+        public int nitrousGaugePercentage { get; set; }
 
         public bool Skidding { get; private set; }
         public float BrakeInput { get; private set; }
@@ -73,7 +80,13 @@ namespace UnityStandardAssets.Vehicles.Car
             m_MaxHandbrakeTorque = float.MaxValue;
 
             m_Rigidbody = GetComponent<Rigidbody>();
+            nosManager = GetComponent<NosManager>();
             m_CurrentTorque = m_FullTorqueOverAllWheels - (m_TractionControl*m_FullTorqueOverAllWheels);
+
+            m_WheelColliders[2].brakeTorque = 0f;
+            m_WheelColliders[3].brakeTorque = 0f;
+
+            currentNitros = m_startingNitrous;
         }
 
         public AudioSource GearSound;
@@ -133,8 +146,34 @@ namespace UnityStandardAssets.Vehicles.Car
             Revs = ULerp(revsRangeMin, revsRangeMax, m_GearFactor);
         }
 
+     
+        private void ApplyNos(float nos)
+        {
+            if(currentNitros > m_NitrousCapacity)
+            {
+                currentNitros = m_NitrousCapacity;
+            }
 
-        public void Move(float steering, float accel, float footbrake, float handbrake)
+            if (currentNitros < 0)
+            {
+                currentNitros = 0f;
+            }
+
+
+            if ((nos > 0) && (currentNitros > 0))
+            {
+                if(CurrentSpeed < MaxSpeed)
+                {
+                    m_Rigidbody.AddForce(transform.forward * m_NitrousForce * Time.deltaTime * 100f);
+                    currentNitros -= m_NitrousConsumtion * Time.deltaTime;
+                    nosManager.DisplayNosFX(nos);
+                }
+            }
+
+            nitrousGaugePercentage = Mathf.RoundToInt((currentNitros / m_NitrousCapacity) * 100f);
+        }
+
+        public void Move(float steering, float accel, float footbrake, float handbrake, float nos)
         {
             frontBias = 1f - rearBias;
 
@@ -186,6 +225,7 @@ namespace UnityStandardAssets.Vehicles.Car
             AddDownForce();
             CheckForWheelSpin();
             TractionControl();
+            ApplyNos(nos);
         }
 
 

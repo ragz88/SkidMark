@@ -7,12 +7,13 @@ namespace UnityStandardAssets.Vehicles.Car
     public class CarUserControl : MonoBehaviour
     {
         private CarController m_Car; // the car controller we want to use
-
+        private NosManager m_Nos; // the car controller we want to use
 
         private void Awake()
         {
             // get the car controller
             m_Car = GetComponent<CarController>();
+            m_Nos = GetComponent<NosManager>();
         }
 
 
@@ -22,7 +23,9 @@ namespace UnityStandardAssets.Vehicles.Car
             float h = Input.GetAxis("Horizontal");
             float v = Input.GetAxis("vertical");
             float handbrake = Input.GetAxis("Jump");
-            m_Car.Move(h, v, v, handbrake);
+            float n = Input.GetAxis("Nos");
+            m_Car.Move(h, v, v, handbrake, n);
+            m_Nos.UpdateNos();
 
         }
     }
