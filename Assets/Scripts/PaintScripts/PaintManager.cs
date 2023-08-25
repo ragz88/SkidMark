@@ -86,6 +86,8 @@ public class PaintManager : Singleton<PaintManager>{
         command.SetRenderTarget(extend);
         command.Blit(mask, extend, extendMaterial);
 
+        
+
         Graphics.ExecuteCommandBuffer(command);
         command.Clear();
     }
