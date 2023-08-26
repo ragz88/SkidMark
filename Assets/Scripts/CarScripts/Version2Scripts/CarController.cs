@@ -23,6 +23,7 @@ namespace UnityStandardAssets.Vehicles.Car
         [SerializeField] private CarDriveType m_CarDriveType = CarDriveType.FourWheelDrive;
         [SerializeField][Range(0, 1)] private float rearBias = 0.7f;
         [SerializeField][Range(0, 1)] private float dynamicHandbrakeEffect = 0.6f;
+        [SerializeField][Range(0, 1)] private float nosTopSpeedModifier = 0.1f;
         [SerializeField] private WheelCollider[] m_WheelColliders = new WheelCollider[4];
         [SerializeField] private GameObject[] m_WheelMeshes = new GameObject[4];
         [SerializeField] private WheelEffects[] m_WheelEffects = new WheelEffects[4];
@@ -162,7 +163,7 @@ namespace UnityStandardAssets.Vehicles.Car
 
             if ((nos > 0) && (currentNitros > 0))
             {
-                if(CurrentSpeed < MaxSpeed)
+                if(CurrentSpeed < MaxSpeed + (MaxSpeed * nosTopSpeedModifier))
                 {
                     m_Rigidbody.AddForce(transform.forward * m_NitrousForce * Time.deltaTime * 100f);
                     currentNitros -= m_NitrousConsumtion * Time.deltaTime;

@@ -4073,6 +4073,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Car
       objectReference: {fileID: 0}
+    - target: {fileID: 4169568527476528468, guid: 2306a5c7889f7ac4981844a329c1044f,
+        type: 3}
+      propertyPath: nosTopSpeedModifier
+      value: 0.1
+      objectReference: {fileID: 0}
     - target: {fileID: 4639418826609204419, guid: 2306a5c7889f7ac4981844a329c1044f,
         type: 3}
       propertyPath: m_LocalPosition.x
