@@ -114,7 +114,8 @@ public class GameModeManager : Singleton<GameModeManager>
         Coverage,
         TugOfWar,
         Zones,
-        DriftRush
+        DriftRush,
+        FreePlay
     }
 
     // Start is called before the first frame update
@@ -140,7 +141,25 @@ public class GameModeManager : Singleton<GameModeManager>
     // Update is called once per frame
     void Update()
     {
-        playTime += Time.deltaTime;
+        
+        if (gameMode == GameMode.DriftRush)
+        {
+            driftRushCurrentTime -= Time.deltaTime;
+            GlobalUIManager.instance.UpdateTimer(driftRushCurrentTime);
+        }
+        else
+        {
+            playTime += Time.deltaTime;
+            float remainingTime = gameLength - playTime;
+
+            if (remainingTime <= 0)
+            {
+                remainingTime = 0;
+            }
+
+            GlobalUIManager.instance.UpdateTimer(remainingTime);
+        }
+
 
         // Update the score, if necessary
         if (scoreUpdatedThisFrame)

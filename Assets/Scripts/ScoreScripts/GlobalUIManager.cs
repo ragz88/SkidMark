@@ -74,6 +74,12 @@ public class GlobalUIManager : Singleton<GlobalUIManager>
     /// </summary>
     [SerializeField] GameObject driftRushUIContainer;
 
+    [Tooltip("This is a gameobject containing all the necessary UI for the Free Play game mode. Will be set active at the start of a Free Play game.")]
+    /// <summary>
+    /// Container Game Object for all global Free Play UI
+    /// </summary>
+    [SerializeField] GameObject freePlayUIContainer;
+
 
 
 
@@ -89,6 +95,9 @@ public class GlobalUIManager : Singleton<GlobalUIManager>
                 tugOfWarUIContainer.SetActive(false);
                 zonesUIContainer.SetActive(false);
                 driftRushUIContainer.SetActive(false);
+                freePlayUIContainer.SetActive(false);
+
+                timerText.gameObject.SetActive(true);
 
                 teamOneCoverageBar.color = GameModeManager.instance.colour_TeamOne;
                 teamTwoCoverageBar.color = GameModeManager.instance.colour_TeamTwo;
@@ -99,6 +108,9 @@ public class GlobalUIManager : Singleton<GlobalUIManager>
                 tugOfWarUIContainer.SetActive(true);
                 zonesUIContainer.SetActive(false);
                 driftRushUIContainer.SetActive(false);
+                freePlayUIContainer.SetActive(false);
+
+                timerText.gameObject.SetActive(true);
 
                 teamOneTugOfWarBar.color = GameModeManager.instance.colour_TeamOne;
                 teamTwoTugOfWarBar.color = GameModeManager.instance.colour_TeamTwo;
@@ -109,6 +121,9 @@ public class GlobalUIManager : Singleton<GlobalUIManager>
                 tugOfWarUIContainer.SetActive(false);
                 zonesUIContainer.SetActive(true);
                 driftRushUIContainer.SetActive(false);
+                freePlayUIContainer.SetActive(false);
+
+                timerText.gameObject.SetActive(true);
                 break;
 
             case GameModeManager.GameMode.DriftRush:
@@ -116,6 +131,19 @@ public class GlobalUIManager : Singleton<GlobalUIManager>
                 tugOfWarUIContainer.SetActive(false);
                 zonesUIContainer.SetActive(false);
                 driftRushUIContainer.SetActive(true);
+                freePlayUIContainer.SetActive(false);
+
+                timerText.gameObject.SetActive(true);
+                break;
+
+            case GameModeManager.GameMode.FreePlay:
+                coverageUIContainer.SetActive(false);
+                tugOfWarUIContainer.SetActive(false);
+                zonesUIContainer.SetActive(false);
+                driftRushUIContainer.SetActive(false);
+                freePlayUIContainer.SetActive(true);
+
+                timerText.gameObject.SetActive(false);
                 break;
         }
 
@@ -180,6 +208,16 @@ public class GlobalUIManager : Singleton<GlobalUIManager>
 
 
     /// <summary>
+    /// Updates the on screen timer to show the specified remaining time.
+    /// </summary>
+    /// <param name="time">Remaining time in seconds</param>
+    public void UpdateTimer(float time)
+    {
+        timerText.text = (time / 60f).ToString("F0") + ":" + (time % 60).ToString("F0");
+    }
+
+
+    /// <summary>
     /// Brings up a screen with some stats, replay options, and a message about the winner.
     /// </summary>
     public void ShowEndScreen()
@@ -198,11 +236,12 @@ public class GlobalUIManager : Singleton<GlobalUIManager>
         }
 
 
-        teamOneScoreText.text = "Team 1 Coverage: " + GameModeManager.instance.TeamOneScore.ToString("F1") + "%";
-        teamTwoScoreText.text = "Team 2 Coverage: " + GameModeManager.instance.TeamTwoScore.ToString("F1") + "%";
+        teamOneScoreText.text = GameModeManager.instance.TeamOneScore.ToString("F1") + "%";
+        teamTwoScoreText.text = GameModeManager.instance.TeamTwoScore.ToString("F1") + "%";
 
         teamOneScoreText.color = GameModeManager.instance.colour_TeamOne;
         teamTwoScoreText.color = GameModeManager.instance.colour_TeamTwo;
     }
+
 
 }
