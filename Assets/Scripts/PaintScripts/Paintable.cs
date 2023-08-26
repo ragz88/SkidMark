@@ -83,7 +83,7 @@ public class Paintable : MonoBehaviour {
             scoreNodes = new ScoreNode[nodesPerRow * nodesPerColumn];
 
             
-            GameObject nodePrefab = TeamManager.instance.scoreNodePrefab;
+            GameObject nodePrefab = GameModeManager.instance.scoreNodePrefab;
 
             Vector3 startPos = planeMesh.vertices[0];
             Vector3 endPos = planeMesh.vertices[planeMesh.vertices.Length - 1];

@@ -44,17 +44,17 @@ public class ScoreNode : MonoBehaviour
 
     void OnDrawGizmos()
     {
-        if (TeamManager.instance.showDebugNodes)
+        if (GameModeManager.instance.showDebugNodes)
         {
             Color teamColour;
 
             if (ControllingTeam == 1)
             {
-                teamColour = TeamManager.instance.colour_TeamOne;
+                teamColour = GameModeManager.instance.colour_TeamOne;
             }
             else if (ControllingTeam == 2)
             {
-                teamColour = TeamManager.instance.colour_TeamTwo;
+                teamColour = GameModeManager.instance.colour_TeamTwo;
             }
             else
             {

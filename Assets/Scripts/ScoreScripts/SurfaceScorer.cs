@@ -135,11 +135,11 @@ public class SurfaceScorer : MonoBehaviour
         // Loop through specific group of values from our colour array, which represent a specific row in our mask texture.
         for (int i = 0; i <= mask.width; i += increment)
         {
-            if (ColourSimilar(TeamManager.instance.colour_TeamOne, maskColours[offset + i], COLOUR_TOLERANCE))
+            if (ColourSimilar(GameModeManager.instance.colour_TeamOne, maskColours[offset + i], COLOUR_TOLERANCE))
             {
                 teamOneCount++;
             }
-            else if (ColourSimilar(TeamManager.instance.colour_TeamTwo, maskColours[offset + i], COLOUR_TOLERANCE))
+            else if (ColourSimilar(GameModeManager.instance.colour_TeamTwo, maskColours[offset + i], COLOUR_TOLERANCE))
             {
                 teamTwoCount++;
             }

@@ -45,11 +45,11 @@ public class DriftPainter : MonoBehaviour
 
         if (teamNumber == 1)
         {
-            paintColor = TeamManager.instance.colour_TeamOne;
+            paintColor = GameModeManager.instance.colour_TeamOne;
         }
         else if (teamNumber == 2)
         {
-            paintColor = TeamManager.instance.colour_TeamTwo;
+            paintColor = GameModeManager.instance.colour_TeamTwo;
         }
         
     }
@@ -73,7 +73,7 @@ public class DriftPainter : MonoBehaviour
 
                     //Update Score
                     p.CalculateScore();
-                    TeamManager.instance.ScoreUpdatedThisFrame = true;
+                    GameModeManager.instance.ScoreUpdatedThisFrame = true;
                 }
             }
 
