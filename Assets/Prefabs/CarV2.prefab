@@ -5813,6 +5813,7 @@ GameObject:
   - component: {fileID: 9204433416780469370}
   - component: {fileID: 8512419978998290274}
   - component: {fileID: 6673156922513049956}
+  - component: {fileID: 7712219862361342499}
   m_Layer: 0
   m_Name: CarV2
   m_TagString: Untagged
@@ -5904,6 +5905,7 @@ MonoBehaviour:
   m_CarDriveType: 2
   rearBias: 0.405
   dynamicHandbrakeEffect: 0.65
+  nosTopSpeedModifier: 0.1
   m_WheelColliders:
   - {fileID: 6227468791650056006}
   - {fileID: 8061304749606876159}
@@ -6003,6 +6005,37 @@ MonoBehaviour:
   nitrous:
   - {fileID: 9196471000537756027}
   nosSound: {fileID: 2818100548624087605}
+--- !u!114 &7712219862361342499
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1933047407509921626}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: 5bb76a357e97ecd40a685b1b95d954ae,
+    type: 3}
+  m_NotificationBehavior: 0
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents: []
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: Car
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 8372612177242488073}
 --- !u!1 &2556001419452938875
 GameObject:
   m_ObjectHideFlags: 0

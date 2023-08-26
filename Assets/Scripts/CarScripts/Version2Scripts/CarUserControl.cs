@@ -10,7 +10,8 @@ namespace UnityStandardAssets.Vehicles.Car
         private CarController m_Car; 
         private NosFXManager m_Nos;
         private float throttleInput, steeringInput, handBrakeInput, nosInput;
-        private CarInput input;
+        private InputActionAsset inputAsset;
+        private InputActionMap player;
 
 
 
@@ -19,7 +20,8 @@ namespace UnityStandardAssets.Vehicles.Car
         {
             m_Car = GetComponent<CarController>();
             m_Nos = GetComponent<NosFXManager>();
-            input = new CarInput();
+            inputAsset = GetComponent<PlayerInput>().actions;
+            player = inputAsset.FindActionMap("Car");
         }
 
 
@@ -33,24 +35,24 @@ namespace UnityStandardAssets.Vehicles.Car
 
         private void OnEnable()
         {
-            input.Enable();
+            player.Enable();
 
-            input.Car.Throttle.performed += ApplyThrottle;
-            input.Car.Throttle.canceled += ReleaseThrottle;
+            player.FindAction("Throttle").performed += ApplyThrottle;
+            player.FindAction("Throttle").canceled += ReleaseThrottle;
 
-            input.Car.Steering.performed += ApplySteering;
-            input.Car.Steering.canceled += ReleaseSteering;
+            player.FindAction("Steering").performed += ApplySteering;
+            player.FindAction("Steering").canceled += ReleaseSteering;
 
-            input.Car.Handbrake.performed += ApplyHandbrake;
-            input.Car.Handbrake.canceled += ReleaseHandbrake;
+            player.FindAction("Handbrake").performed += ApplyHandbrake;
+            player.FindAction("Handbrake").canceled += ReleaseHandbrake;
 
-            input.Car.Boost.performed += ApplyBoost;
-            input.Car.Boost.canceled += ReleaseBoost;
+            player.FindAction("Boost").performed += ApplyBoost;
+            player.FindAction("Boost").canceled += ReleaseBoost;
         }
 
         private void OnDisable()
         {
-            input.Disable();
+            player.Disable();
         }
 
         private void ApplyThrottle( InputAction.CallbackContext value)
