@@ -25,6 +25,17 @@ public class DriftManager : MonoBehaviour
     public Color driftEndedColour;
 
     private IEnumerator stopDriftingCoroutine = null;
+
+
+    /// <summary>
+    /// Total Score Obtained from Drifting.
+    /// </summary>
+    public float TotalScore
+    {
+        get { return totalScore;}
+    }
+
+
     void Start()
     {
         driftObject.SetActive(false);

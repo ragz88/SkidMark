@@ -43,6 +43,7 @@ public class GameModeManager : Singleton<GameModeManager>
     public Color colour_TeamTwo;
 
     [Space]
+    public DriftManager driftManager;
     public GameObject scoreNodePrefab;
     public bool showDebugNodes;
 
@@ -144,7 +145,14 @@ public class GameModeManager : Singleton<GameModeManager>
         
         if (gameMode == GameMode.DriftRush)
         {
-            driftRushCurrentTime -= Time.deltaTime;
+            if (driftManager.isDrifting)
+            {
+                driftRushCurrentTime = driftRushStartTime;
+            }
+            else
+            {
+                driftRushCurrentTime -= Time.deltaTime;
+            }
             GlobalUIManager.instance.UpdateTimer(driftRushCurrentTime);
         }
         else
@@ -299,7 +307,7 @@ public class GameModeManager : Singleton<GameModeManager>
 
 
     /// <summary>
-    /// Used Exclusively for Drift Rush. Triggered as the player crosses the end line.
+    /// Used for Drift Rush and Free Play. Triggered as the player crosses the end line.
     /// </summary>
     public void FinishLineReached()
     {

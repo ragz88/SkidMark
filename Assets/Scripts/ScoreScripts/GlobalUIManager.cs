@@ -224,23 +224,46 @@ public class GlobalUIManager : Singleton<GlobalUIManager>
     {
         endScreen.SetActive(true);
 
-        if (GameModeManager.instance.WinningTeam == 1)
+        if (GameModeManager.instance.gameMode == GameModeManager.GameMode.DriftRush)
         {
-            winnerHeading.text = "Team 1 Wins!";
-            winnerHeading.color = GameModeManager.instance.colour_TeamOne;
+            if (GameModeManager.instance.WinningTeam == 1)
+            {
+                winnerHeading.text = "You Made It!";
+                winnerHeading.color = GameModeManager.instance.colour_TeamOne;
+            }
+            else
+            {
+                winnerHeading.text = "Not Quite...";
+                winnerHeading.color = GameModeManager.instance.colour_TeamTwo;
+            }
+
+            teamOneScoreText.text = GameModeManager.instance.TeamOneScore.ToString("F1") + "%";
+            teamTwoScoreText.text = GameModeManager.instance.driftManager.TotalScore.ToString("F0") + " Points";
+
+            teamOneScoreText.color = GameModeManager.instance.colour_TeamOne;
+            teamTwoScoreText.color = GameModeManager.instance.colour_TeamOne;
         }
         else
         {
-            winnerHeading.text = "Team 2 Wins!";
-            winnerHeading.color = GameModeManager.instance.colour_TeamTwo;
+            if (GameModeManager.instance.WinningTeam == 1)
+            {
+                winnerHeading.text = "Team 1 Wins!";
+                winnerHeading.color = GameModeManager.instance.colour_TeamOne;
+            }
+            else
+            {
+                winnerHeading.text = "Team 2 Wins!";
+                winnerHeading.color = GameModeManager.instance.colour_TeamTwo;
+            }
+
+            teamOneScoreText.text = GameModeManager.instance.TeamOneScore.ToString("F1") + "%";
+            teamTwoScoreText.text = GameModeManager.instance.TeamTwoScore.ToString("F1") + "%";
+
+            teamOneScoreText.color = GameModeManager.instance.colour_TeamOne;
+            teamTwoScoreText.color = GameModeManager.instance.colour_TeamTwo;
         }
-
-
-        teamOneScoreText.text = GameModeManager.instance.TeamOneScore.ToString("F1") + "%";
-        teamTwoScoreText.text = GameModeManager.instance.TeamTwoScore.ToString("F1") + "%";
-
-        teamOneScoreText.color = GameModeManager.instance.colour_TeamOne;
-        teamTwoScoreText.color = GameModeManager.instance.colour_TeamTwo;
+        
+        
     }
 
 
