@@ -213,7 +213,31 @@ public class GlobalUIManager : Singleton<GlobalUIManager>
     /// <param name="time">Remaining time in seconds</param>
     public void UpdateTimer(float time)
     {
-        timerText.text = (time / 60f).ToString("F0") + ":" + (time % 60).ToString("F0");
+        float minutes = time / 60f;
+        float seconds = time % 60;
+
+        string minutesStr = Mathf.FloorToInt(minutes).ToString("F0");
+
+        if (minutes < 10)
+        {
+            minutesStr = "0" + minutesStr;
+        }
+
+
+        string secondsStr = Mathf.FloorToInt(seconds).ToString("F0");
+
+        if (seconds < 10)
+        {
+            secondsStr = "0" + secondsStr;
+        }
+        else if (seconds > 59.5f)
+        {
+            secondsStr = "00";
+        }
+
+
+
+        timerText.text = minutesStr + ":" + secondsStr;
     }
 
 
