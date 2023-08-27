@@ -6162,7 +6162,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3789d994fe9c84947a4c2f482cbd9877, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_CarDriveType: 2
+  m_CarDriveType: 3
   rearBias: 0.405
   dynamicHandbrakeEffect: 0.65
   nosTopSpeedModifier: 0.1
@@ -6309,7 +6309,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   driftManager: {fileID: 7488642725864634830}
-  teamNumber: 1
   offset: {x: 0, y: 0, z: 0}
   paintDistance: 1
   paintColor: {r: 0, g: 0.8352941, b: 1, a: 1}
@@ -8867,7 +8866,7 @@ Transform:
   m_GameObject: {fileID: 8461328345645504895}
   serializedVersion: 2
   m_LocalRotation: {x: 0.06104851, y: 0, z: 0, w: 0.99813485}
-  m_LocalPosition: {x: 0, y: 2.13, z: -7.41}
+  m_LocalPosition: {x: 0, y: 2.84, z: -10.77}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
