@@ -56,7 +56,7 @@ namespace UnityStandardAssets.Vehicles.Car
         private Rigidbody m_Rigidbody;
         private const float k_ReversingThreshold = 0.01f;
         private float frontBias;
-        private float currentNitros;
+        public float currentNitros { get; set; }
         private NosFXManager nosManager;
         public int nitrousGaugePercentage { get; set; }
 
