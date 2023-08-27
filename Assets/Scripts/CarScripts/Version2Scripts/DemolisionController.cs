@@ -7,6 +7,7 @@ using UnityStandardAssets.Vehicles.Car;
 public class DemolisionController : MonoBehaviour
 {
     [SerializeField] float demoDelay = 2;
+    [SerializeField] GameObject demolitionEffectPrefab;
     [SerializeField] Renderer[] renderers;
 
     Collider[] colliders;
@@ -83,5 +84,6 @@ public class DemolisionController : MonoBehaviour
 
         carBody.useGravity = false;
         carControl.enabled = false;
+        Instantiate(demolitionEffectPrefab, transform.position - Vector3.up, Quaternion.identity);
     }
 }

@@ -623,7 +623,7 @@ Transform:
   m_GameObject: {fileID: 1247044076377772039}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.511, z: 1.916}
+  m_LocalPosition: {x: 0, y: 0.511, z: 2.19}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -6331,6 +6331,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   demoDelay: 6
+  demolitionEffectPrefab: {fileID: 7554847603543542917, guid: ad6f1ee863ae1bf48a0910e9229a72d7,
+    type: 3}
   renderers:
   - {fileID: 429457976940582529}
   - {fileID: 2703267232564213499}

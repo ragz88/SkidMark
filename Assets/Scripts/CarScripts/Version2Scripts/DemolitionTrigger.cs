@@ -12,7 +12,7 @@ public class DemolitionTrigger : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (teamNumber == 1)
+        if (teamNumber == 1 || teamNumber == 0)
         {
             if (other.CompareTag("Team2Car"))
             {
