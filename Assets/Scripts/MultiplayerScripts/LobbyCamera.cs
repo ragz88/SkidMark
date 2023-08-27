@@ -7,12 +7,12 @@ using UnityEngine.InputSystem;
 public class LobbyCamera : MonoBehaviour
 {
     private PlayerInput players;
-    private Camera lobbyCam;
+    private GameObject lobbyCam;
 
 
     private void Awake()
     {
-        lobbyCam = GetComponent<Camera>();
+        lobbyCam = this.gameObject;
     }
 
     private void Update()
@@ -25,13 +25,7 @@ public class LobbyCamera : MonoBehaviour
     {
         if(players)
         {
-            lobbyCam.enabled = false;
+            lobbyCam.SetActive(false);
         }
-        else
-        {
-            lobbyCam.enabled = true;
-        }
-
-
     }
 }
