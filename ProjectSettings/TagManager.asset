@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Team1
   - Team2
+  - Team1Car
+  - Team2Car
   layers:
   - Default
   - TransparentFX
@@ -15,8 +17,8 @@ TagManager:
   - UI
   - ScoreNode
   - ScoreTrigger
-  - 
-  - 
+  - CarMain
+  - DemoTrigger
   - 
   - 
   - 

@@ -1,13 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 using UnityStandardAssets.Vehicles.Car;
 
 public class NosFXManager : MonoBehaviour
 {
     private CarController car;
-    public TMP_Text nitrousMeter;
+    public Image nitrousMeter;
     public ParticleSystem[] nitrous;
     public AudioSource nosSound;
     public bool applyNosFX { get; set; }
@@ -19,7 +20,7 @@ void Start()
 
     public void UpdateNos()
     {
-        nitrousMeter.text = car.nitrousGaugePercentage.ToString("###,##0") + "%";
+        nitrousMeter.fillAmount = car.nitrousGaugePercentage/100f;
         if (applyNosFX )
         {
             if(!nosSound.isPlaying)

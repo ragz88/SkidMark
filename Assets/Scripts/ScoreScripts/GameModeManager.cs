@@ -125,6 +125,10 @@ public class GameModeManager : Singleton<GameModeManager>
         for (int i = 0; i < teamOneCars.Length; i++)
         {
             teamOneCars[i].paintColor = colour_TeamOne;
+        }
+
+        for (int i = 0; i < teamTwoCars.Length; i++)
+        {
             teamTwoCars[i].paintColor = colour_TeamTwo;
         }
 
@@ -344,5 +348,8 @@ public class GameModeManager : Singleton<GameModeManager>
             return;
         }
     }
+
+
+
 
 }

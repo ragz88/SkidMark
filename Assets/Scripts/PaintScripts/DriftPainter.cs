@@ -43,6 +43,7 @@ public class DriftPainter : MonoBehaviour
     {
         scoreCapsuleInitialScale = scoreCapsule.transform.localScale;
 
+        // Fix - assign this from GameModeManager
         if (teamNumber == 1)
         {
             paintColor = GameModeManager.instance.colour_TeamOne;
