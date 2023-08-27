@@ -29,5 +29,21 @@ public class PlayerManager : MonoBehaviour
         players.Add(player);
         player.transform.position = startingPoints[players.Count - 1].position;
         player.transform.rotation = startingPoints[players.Count - 1].rotation;
+
+        // Implies odd number
+        if (players.Count % 2 == 1)
+        {
+            player.gameObject.tag = "Team1Car";
+            player.gameObject.GetComponentInChildren<DemolitionTrigger>().teamNumber = 1;
+            player.GetComponent<DriftPainter>().scoreCapsule.tag = "Team1";
+        }
+        else
+        {
+            player.gameObject.tag = "Team2Car";
+            player.gameObject.GetComponentInChildren<DemolitionTrigger>().teamNumber = 2;
+            player.GetComponent<DriftPainter>().scoreCapsule.tag = "Team2";
+        }
+
+        GameModeManager.instance.AddNewPlayer(player.GetComponent<DriftPainter>());
     }
 }

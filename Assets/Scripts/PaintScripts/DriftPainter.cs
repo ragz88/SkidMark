@@ -2,7 +2,6 @@ using UnityEngine;
 public class DriftPainter : MonoBehaviour
 {
     [SerializeField] private DriftManager driftManager;
-    [SerializeField] private int teamNumber = 1;
 
     [Space]
 
@@ -29,7 +28,7 @@ public class DriftPainter : MonoBehaviour
     [Space]
 
     [Tooltip("Child capsule collider that will collide with score nodes in secret")]
-    [SerializeField] private GameObject scoreCapsule;
+    [SerializeField] public GameObject scoreCapsule;
 
 
     private float radius = 1;
@@ -42,16 +41,6 @@ public class DriftPainter : MonoBehaviour
     private void Start()
     {
         scoreCapsuleInitialScale = scoreCapsule.transform.localScale;
-
-        // Fix - assign this from GameModeManager
-        if (teamNumber == 1)
-        {
-            paintColor = GameModeManager.instance.colour_TeamOne;
-        }
-        else if (teamNumber == 2)
-        {
-            paintColor = GameModeManager.instance.colour_TeamTwo;
-        }
         
     }
 

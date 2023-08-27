@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class DemolitionTrigger : MonoBehaviour
 {
-    [HideInInspector] public int teamNumber = 1;
+    public int teamNumber = 1;
 
     [SerializeField] float velocityThreshhold = 2;
     [SerializeField] Rigidbody carBody;

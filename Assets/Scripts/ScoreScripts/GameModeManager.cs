@@ -122,15 +122,7 @@ public class GameModeManager : Singleton<GameModeManager>
     // Start is called before the first frame update
     void Start()
     {
-        for (int i = 0; i < teamOneCars.Length; i++)
-        {
-            teamOneCars[i].paintColor = colour_TeamOne;
-        }
-
-        for (int i = 0; i < teamTwoCars.Length; i++)
-        {
-            teamTwoCars[i].paintColor = colour_TeamTwo;
-        }
+        UpdateTeamColours();
 
         paintableSurfaces = GameObject.FindObjectsOfType<Paintable>();
 
@@ -263,6 +255,54 @@ public class GameModeManager : Singleton<GameModeManager>
                 winningTeam = 2;
             }
         }
+    }
+
+
+    public void UpdateTeamColours()
+    {
+        for (int i = 0; i < teamOneCars.Length; i++)
+        {
+            teamOneCars[i].paintColor = colour_TeamOne;
+        }
+
+        for (int i = 0; i < teamTwoCars.Length; i++)
+        {
+            teamTwoCars[i].paintColor = colour_TeamTwo;
+        }
+    }
+
+
+    public void AddNewPlayer(DriftPainter painter)
+    {
+        // Implies team one has an extra player
+        if (teamOneCars.Length > teamTwoCars.Length)
+        {
+            DriftPainter[] newPainters = new DriftPainter[teamTwoCars.Length + 1];
+
+            for (int i = 0; i < teamTwoCars.Length; i++)
+            {
+                newPainters[i] = teamTwoCars[i];
+            }
+
+            newPainters[newPainters.Length - 1] = painter;
+
+            teamTwoCars = newPainters;
+        }
+        else
+        {
+            DriftPainter[] newPainters = new DriftPainter[teamOneCars.Length + 1];
+
+            for (int i = 0; i < teamOneCars.Length; i++)
+            {
+                newPainters[i] = teamOneCars[i];
+            }
+
+            newPainters[newPainters.Length - 1] = painter;
+
+            teamOneCars = newPainters;
+        }
+
+        UpdateTeamColours();
     }
 
 
