@@ -57,6 +57,8 @@ namespace UnityStandardAssets.Vehicles.Car
         private const float k_ReversingThreshold = 0.01f;
         private float frontBias;
         public float currentNitros { get; set; }
+
+        public float NitrosCapacity { get { return m_NitrousCapacity; } }
         private NosFXManager nosManager;
         public int nitrousGaugePercentage { get; set; }
 
@@ -443,6 +445,19 @@ namespace UnityStandardAssets.Vehicles.Car
                 }
             }
             return false;
+        }
+
+
+        public void SetCurrentNitros(float newNitros)
+        {
+            if (newNitros > NitrosCapacity)
+            {
+                currentNitros = NitrosCapacity;
+            }
+            else
+            {
+                currentNitros = newNitros;
+            }
         }
     }
 }
