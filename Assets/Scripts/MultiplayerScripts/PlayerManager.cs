@@ -45,5 +45,6 @@ public class PlayerManager : MonoBehaviour
         }
 
         GameModeManager.instance.AddNewPlayer(player.GetComponent<DriftPainter>());
+        GameModeManager.instance.PlayTime = 0;
     }
 }

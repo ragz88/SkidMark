@@ -109,6 +109,16 @@ public class GameModeManager : Singleton<GameModeManager>
         get { return tugOfWarRelativeWinPercent; }
     }
 
+    /// <summary>
+    /// How long has current game gone on for
+    /// </summary>
+    public float PlayTime
+    {
+        get { return playTime; }
+
+        set { playTime = value; }
+    }
+
 
     public enum GameMode
     {
