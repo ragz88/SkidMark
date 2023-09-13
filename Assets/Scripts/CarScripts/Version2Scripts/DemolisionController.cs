@@ -82,6 +82,7 @@ public class DemolisionController : MonoBehaviour
             renderers[i].enabled = false;
         }
 
+        carBody.velocity = Vector3.zero;
         carBody.useGravity = false;
         carControl.enabled = false;
         Instantiate(demolitionEffectPrefab, transform.position - Vector3.up, Quaternion.identity);
