@@ -47,4 +47,17 @@ public class PlayerManager : MonoBehaviour
         GameModeManager.instance.AddNewPlayer(player.GetComponent<DriftPainter>());
         GameModeManager.instance.PlayTime = 0;
     }
+
+
+    /// <summary>
+    /// Moves the player back to a starting point and sets their velocity to 0.
+    /// </summary>
+    /// <param name="Player"></param>
+    public void ResetPlayer(Rigidbody player)
+    {
+        player.transform.position = startingPoints[players.Count - 1].position;
+        player.transform.rotation = startingPoints[players.Count - 1].rotation;
+
+        player.velocity = Vector3.zero;
+    }
 }

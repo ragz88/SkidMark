@@ -166,8 +166,6 @@ namespace UnityStandardAssets.Vehicles.Car
                     m_bonusNitros = 0;
                 }
             }
-
-            Debug.Log(m_bonusNitros);
             
             if(currentNitros > m_NitrousCapacity)
             {
