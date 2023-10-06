@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityStandardAssets.Vehicles.Car;
 
 public class ScoreNode : MonoBehaviour
 {
@@ -71,10 +72,20 @@ public class ScoreNode : MonoBehaviour
     {
         if (other.transform.CompareTag("Team1"))
         {
+            if (controllingTeam == 2)
+            {
+                ColourReplaced(other.transform);
+            }
+
             controllingTeam = 1;
         }
         else if (other.transform.CompareTag("Team2"))
         {
+            if (controllingTeam == 1)
+            {
+                ColourReplaced(other.transform);
+            }
+
             controllingTeam = 2;
         }
     }
@@ -83,12 +94,28 @@ public class ScoreNode : MonoBehaviour
     {
         if (other.transform.CompareTag("Team1"))
         {
+            if (controllingTeam == 2)
+            {
+                ColourReplaced(other.transform);
+            }
+
             controllingTeam = 1;
         }
         else if (other.transform.CompareTag("Team2"))
         {
+            if (controllingTeam == 1)
+            {
+                ColourReplaced(other.transform);
+            }
+
             controllingTeam = 2;
         }
+    }
+
+
+    void ColourReplaced(Transform carTransform)
+    {
+        carTransform.GetComponentInParent<CarController>().AddPaintReplaceNitros();
     }
 
 }

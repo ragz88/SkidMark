@@ -6198,6 +6198,7 @@ MonoBehaviour:
   m_NitrousCapacity: 1000
   m_NitrousConsumtion: 230
   m_startingNitrous: 1000
+  m_paintReplaceNitrosBonus: 11
   GearSound: {fileID: 0}
 --- !u!114 &7857894839200875558
 MonoBehaviour:

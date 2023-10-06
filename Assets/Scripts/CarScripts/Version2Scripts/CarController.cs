@@ -45,6 +45,7 @@ namespace UnityStandardAssets.Vehicles.Car
         [SerializeField] private float m_NitrousCapacity = 1000f;
         [SerializeField] private float m_NitrousConsumtion = 100f;
         [SerializeField] private float m_startingNitrous = 100f;
+        [SerializeField] private float m_paintReplaceNitrosBonus = 10f;
 
         private Quaternion[] m_WheelMeshLocalRotations;
         private Vector3 m_Prevpos, m_Pos;
@@ -56,6 +57,8 @@ namespace UnityStandardAssets.Vehicles.Car
         private Rigidbody m_Rigidbody;
         private const float k_ReversingThreshold = 0.01f;
         private float frontBias;
+        private float m_nitrosBonusFillSpeed = 3f;   // Speed at which the Nos tank fills when drifting over an opponent's colour. NOT THE AMOUNT GAINED, but how quickly we lerp to that amount.
+        private float m_bonusNitros = 0f;               // Will be slowly added to current Nos if the player earns any bonus nos.
         public float currentNitros { get; set; }
 
         public float NitrosCapacity { get { return m_NitrousCapacity; } }
@@ -152,6 +155,20 @@ namespace UnityStandardAssets.Vehicles.Car
      
         private void ApplyNos(float nos)
         {
+            // Gradually fills nos bar when player has bonus Nos.
+            if (m_bonusNitros > 0)
+            {
+                currentNitros += m_nitrosBonusFillSpeed;
+                m_bonusNitros -= m_nitrosBonusFillSpeed;
+
+                if (m_bonusNitros < 0)
+                {
+                    m_bonusNitros = 0;
+                }
+            }
+
+            Debug.Log(m_bonusNitros);
+            
             if(currentNitros > m_NitrousCapacity)
             {
                 currentNitros = m_NitrousCapacity;
@@ -177,7 +194,7 @@ namespace UnityStandardAssets.Vehicles.Car
                 nosManager.applyNosFX = false;
             }
 
-            nitrousGaugePercentage = Mathf.RoundToInt((currentNitros / m_NitrousCapacity) * 100f);
+            nitrousGaugePercentage = Mathf.RoundToInt((currentNitros / m_NitrousCapacity) * 100f);                    
         }
 
         public void Move(float steering, float accel, float footbrake, float handbrake, float nos)
@@ -458,6 +475,15 @@ namespace UnityStandardAssets.Vehicles.Car
             {
                 currentNitros = newNitros;
             }
+        }
+
+
+        /// <summary>
+        /// If the player drifts over another player's paint, they should get a little nitros boost.
+        /// </summary>
+        public void AddPaintReplaceNitros()
+        {
+            m_bonusNitros += m_paintReplaceNitrosBonus;
         }
     }
 }
