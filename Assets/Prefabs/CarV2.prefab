@@ -6315,8 +6315,8 @@ MonoBehaviour:
   paintColor: {r: 0, g: 0.8352941, b: 1, a: 1}
   strength: 0.7
   hardness: 0.02
-  width: 2.8
-  height: 1.4
+  width: 1.25
+  height: 3.8
   scoreCapsule: {fileID: 6787266223925140080}
 --- !u!114 &2158472267280599347
 MonoBehaviour:
