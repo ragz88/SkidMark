@@ -12,6 +12,7 @@ namespace UnityStandardAssets.Vehicles.Car
         private float throttleInput, steeringInput, handBrakeInput, nosInput;
         private InputActionAsset inputAsset;
         private InputActionMap player;
+        private PlayerManager playerManager;
 
 
 
@@ -22,6 +23,8 @@ namespace UnityStandardAssets.Vehicles.Car
             m_Nos = GetComponent<NosFXManager>();
             inputAsset = GetComponent<PlayerInput>().actions;
             player = inputAsset.FindActionMap("Car");
+            playerManager = GameObject.FindObjectOfType<PlayerManager>();
+            Debug.Log(playerManager.gameObject.name);
         }
 
 
@@ -48,6 +51,8 @@ namespace UnityStandardAssets.Vehicles.Car
 
             player.FindAction("Boost").performed += ApplyBoost;
             player.FindAction("Boost").canceled += ReleaseBoost;
+
+            player.FindAction("Reset").performed += ApplyReset;
         }
 
         private void OnDisable()
@@ -90,6 +95,12 @@ namespace UnityStandardAssets.Vehicles.Car
         {
             nosInput = 0;
         }
+
+        private void ApplyReset(InputAction.CallbackContext value)
+        {
+            playerManager.ResetPlayer(m_Car.GetComponent<Rigidbody>());
+        }
+
 
     }
 }

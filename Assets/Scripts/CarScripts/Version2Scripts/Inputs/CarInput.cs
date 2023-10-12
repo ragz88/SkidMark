@@ -71,6 +71,15 @@ public partial class @CarInput: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Reset"",
+                    ""type"": ""Button"",
+                    ""id"": ""1201d0a8-772c-45fe-9583-4635e19ccd7e"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -271,6 +280,28 @@ public partial class @CarInput: IInputActionCollection2, IDisposable
                     ""action"": ""Join"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""fdc192f2-3711-47cd-b2ce-ae96bb5fe275"",
+                    ""path"": ""<Keyboard>/r"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Reset"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f0f57263-e35f-4441-a74a-5141122f218c"",
+                    ""path"": ""<Gamepad>/select"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Reset"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -284,6 +315,7 @@ public partial class @CarInput: IInputActionCollection2, IDisposable
         m_Car_Handbrake = m_Car.FindAction("Handbrake", throwIfNotFound: true);
         m_Car_Boost = m_Car.FindAction("Boost", throwIfNotFound: true);
         m_Car_Join = m_Car.FindAction("Join", throwIfNotFound: true);
+        m_Car_Reset = m_Car.FindAction("Reset", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -350,6 +382,7 @@ public partial class @CarInput: IInputActionCollection2, IDisposable
     private readonly InputAction m_Car_Handbrake;
     private readonly InputAction m_Car_Boost;
     private readonly InputAction m_Car_Join;
+    private readonly InputAction m_Car_Reset;
     public struct CarActions
     {
         private @CarInput m_Wrapper;
@@ -359,6 +392,7 @@ public partial class @CarInput: IInputActionCollection2, IDisposable
         public InputAction @Handbrake => m_Wrapper.m_Car_Handbrake;
         public InputAction @Boost => m_Wrapper.m_Car_Boost;
         public InputAction @Join => m_Wrapper.m_Car_Join;
+        public InputAction @Reset => m_Wrapper.m_Car_Reset;
         public InputActionMap Get() { return m_Wrapper.m_Car; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -383,6 +417,9 @@ public partial class @CarInput: IInputActionCollection2, IDisposable
             @Join.started += instance.OnJoin;
             @Join.performed += instance.OnJoin;
             @Join.canceled += instance.OnJoin;
+            @Reset.started += instance.OnReset;
+            @Reset.performed += instance.OnReset;
+            @Reset.canceled += instance.OnReset;
         }
 
         private void UnregisterCallbacks(ICarActions instance)
@@ -402,6 +439,9 @@ public partial class @CarInput: IInputActionCollection2, IDisposable
             @Join.started -= instance.OnJoin;
             @Join.performed -= instance.OnJoin;
             @Join.canceled -= instance.OnJoin;
+            @Reset.started -= instance.OnReset;
+            @Reset.performed -= instance.OnReset;
+            @Reset.canceled -= instance.OnReset;
         }
 
         public void RemoveCallbacks(ICarActions instance)
@@ -426,5 +466,6 @@ public partial class @CarInput: IInputActionCollection2, IDisposable
         void OnHandbrake(InputAction.CallbackContext context);
         void OnBoost(InputAction.CallbackContext context);
         void OnJoin(InputAction.CallbackContext context);
+        void OnReset(InputAction.CallbackContext context);
     }
 }

@@ -52,10 +52,10 @@ namespace UnityStandardAssets.Vehicles.Car
                 RightCar();
             }
 
-            if (Input.GetKeyDown(KeyCode.R))
-            {
-                RightCar();
-            }
+            //if (Input.GetKeyDown(KeyCode.R))
+            //{
+            //    RightCar();
+            //}
         }
 
 
