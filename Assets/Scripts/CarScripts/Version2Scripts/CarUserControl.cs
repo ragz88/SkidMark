@@ -24,7 +24,7 @@ namespace UnityStandardAssets.Vehicles.Car
             inputAsset = GetComponent<PlayerInput>().actions;
             player = inputAsset.FindActionMap("Car");
             playerManager = GameObject.FindObjectOfType<PlayerManager>();
-            Debug.Log(playerManager.gameObject.name);
+            //Debug.Log(playerManager.gameObject.name);
         }
 
 
